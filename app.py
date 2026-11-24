@@ -145,6 +145,34 @@ with gr.Blocks(
     estimates and should not be treated as definitive academic decisions.*
     """)
 
+
+    gr.HTML("""
+    <div style="
+        text-align: center;
+        padding: 25px 10px;
+        margin-top: 25px;
+        border-top: 1px solid #888;
+        line-height: 2;
+    ">
+        <div style="font-size: 17px; font-weight: bold;">
+            Developed by Md Sharif Hossain
+        </div>
+        <div>
+            B.Sc (
+            <a href="https://pust.ac.bd" target="_blank">
+                pust.ac.bd
+            </a>)
+        </div>
+        <div>
+            M.Sc (
+            <a href="https://uttara.ac.bd" target="_blank">
+                uttara.ac.bd
+            </a>)
+        </div>
+        <div>Assistant Teacher, CPSCM</div>
+    </divdivdiv>
+    """)
+
 if __name__ == "__main__":
     app.launch(
         server_name="0.0.0.0",
