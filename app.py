@@ -33,7 +33,9 @@ def predict_student(*values):
     try:
         cleaned = []
         for col, value in zip(X.columns, values):
-            if pd.api.types.is_numeric_dtype(X[col]):
+            if col == "school":
+                cleaned.append("GP" if value == "CPSCM" else "MS")
+            elif pd.api.types.is_numeric_dtype(X[col]):
                 cleaned.append(int(value))
             else:
                 cleaned.append(value)
@@ -92,12 +94,20 @@ with gr.Blocks(
                 for col in columns:
                     with gr.Column(min_width=180):
                         if X[col].dtype == "object":
-                            choices = sorted(
-                                X[col].dropna().unique().tolist()
-                            )
-                            component = gr.Dropdown(
-                                choices=choices,
-                                value=X[col].mode()[0],
+                            if col == "school":
+                                choices = ["CPSCM", "UU"]
+                                component = gr.Dropdown(
+                                    choices=choices,
+                                    value="CPSCM",
+                                    label="school"
+                                )
+                            else:
+                                choices = sorted(
+                                    X[col].dropna().unique().tolist()
+                                )
+                                component = gr.Dropdown(
+                                    choices=choices,
+                                    value=X[col].mode()[0],
                                 label=col
                             )
                         else:
